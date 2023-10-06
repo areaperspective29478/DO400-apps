@@ -8,12 +8,19 @@ pipeline {
  url: 'https://github.com/areaperspective29478/DO400-apps'
  }
  }
- stage('Test') {
+ 	stage('Test') {
+	 	steps {
+	 		dir('simple-calculator') {
+	 		sh './mvnw clean test'
+	 	}
+ 	}
+stage('Checkout') {
  steps {
- dir('simple-calculator') {
- sh './mvnw clean test'
+sendNotification('started', 'team@example.com')
+ git branch: 'notifications',
+ url: 'https://github.com/YOUR_GITHUB_USER/DO400-apps'
  }
- }
+}
  }
  }
 }
