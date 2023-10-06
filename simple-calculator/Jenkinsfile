@@ -4,6 +4,7 @@ pipeline {
  stages {
  stage('Checkout') {
  steps {
+ sendNotification('started', 'team@example.com')
  git branch: 'notifications',
  url: 'https://github.com/areaperspective29478/DO400-apps'
  }
@@ -14,16 +15,9 @@ pipeline {
 	 		sh './mvnw clean test'
 	 	}
  	}
-stage('Checkout') {
- steps {
-sendNotification('started', 'team@example.com')
- git branch: 'notifications',
- url: 'https://github.com/YOUR_GITHUB_USER/DO400-apps'
  }
-}
+	}
  }
- }
-}
 
 
 void sendNotification(String action, String email) {
